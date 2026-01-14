@@ -12,9 +12,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Show workspace structure (debug)
+      - name: Show workspace (debug)
         run: |
-          echo "Workspace:"
+          echo Workspace is:
+          echo %CD%
           dir
         shell: cmd
 
