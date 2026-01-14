@@ -8,14 +8,15 @@ jobs:
   build-windows:
     runs-on: windows-latest
 
-    defaults:
-      run:
-        shell: bash
-        working-directory: .
-
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Show workspace structure (debug)
+        run: |
+          echo "Workspace:"
+          dir
+        shell: cmd
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,12 +28,15 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        shell: cmd
 
       - name: Build Next.js
         run: npm run build
+        shell: cmd
 
       - name: Build Tauri Windows App
         run: npx tauri build
+        shell: cmd
 
       - name: Upload Windows Installer
         uses: actions/upload-artifact@v4
